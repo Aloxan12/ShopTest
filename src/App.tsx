@@ -5,6 +5,8 @@ import {ToDoList} from './ToDoList';
 import {AddItemForm} from "./AddItemForm";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
+import {Product, ProductsType, ProductType} from "./Shop/Product";
+import {Basket} from "./Shop/Baskets";
 
 export type TasksType = {
     id: string
@@ -43,8 +45,20 @@ function App() {
                 {id: v1(), title: "Beer", isDone: false},
                 {id: v1(), title: "Oil", isDone: false},
             ],
-        }
-    )
+        })
+
+    const [products, setProducts] = useState<Array<ProductType>>([
+        {id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg",title: "Pasta", price: 3,
+            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:"},
+        {id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg",title: "Pasta", price: 8,
+            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:"},
+        {id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg",title: "Pasta", price: 9,
+            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:"},
+        {id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg",title: "Pasta", price: 2,
+            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:"},
+    ])
+    const [productInBasket, setProductInBasket] = useState<Array<ProductType>>([])
+
 
     function removeTasks(taskID: string, toDoListId: string) {
         const todoListTasks = tasks[toDoListId]
@@ -65,6 +79,12 @@ function App() {
         let todoListTasks = tasks[todoListId]
         tasks[todoListId] = [task, ...todoListTasks]
         setTasks({...tasks})
+    }
+    function buy (idProd: string){
+        const product = products.find(p => p.id === idProd)
+        if(product){
+            setProductInBasket([product, ...productInBasket])
+        }
     }
     function changeTaskTitle(taskId: string, newTitle: string, todoListId: string){
         const todoListTask = tasks[todoListId]
@@ -159,6 +179,21 @@ function App() {
                    }
                </Grid>
            </Container>
+
+            {
+                products.map(p=>{
+                    return <Product id={p.id}
+                                    title={p.title}
+                                    description={p.description}
+                                    img={p.img}
+                                    price={p.price}
+                                    buy={buy}
+                    />
+                })
+            }
+
+
+           <Basket product={productInBasket}/>
         </div>
     );
 }

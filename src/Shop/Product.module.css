@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+}
+
+.prod{
+    width: 250px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    background-color: #b3c8e7;
+    text-align: center;
+    margin: 50px;
+    padding: 7px;
+}
+.container img{
+    width: 80%;
+}

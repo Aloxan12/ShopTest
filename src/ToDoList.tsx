@@ -4,8 +4,7 @@ import {FilterType, TasksType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
-import {Delete, Favorite} from "@material-ui/icons";
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import {Delete} from "@material-ui/icons";
 
 export type ToDoListType = {
     id: string

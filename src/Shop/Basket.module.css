@@ -1,0 +1,30 @@
+.basketContainer{
+    display: flex;
+    margin: 50px;
+    justify-content: space-between;
+    width: 900px;
+    background-color: #bfd0d2;
+    border-radius: 10px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.form input, .form button{
+    width: 80%;
+    margin-top: 15px;
+}
+.prod{
+    width: 250px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    background-color: #b3c8e7;
+    text-align: center;
+    margin: 50px;
+    padding: 7px;
+}
+.prod img{
+     width: 80%;
+ }
