@@ -28,3 +28,9 @@
 .prod img{
      width: 80%;
  }
+.prodCount{
+    display: flex;
+}
+.countCont{
+    margin: auto;
+}

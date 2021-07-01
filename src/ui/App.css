@@ -1,0 +1,17 @@
+.AppNavLink{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    background-color: #dbe2ec;
+    padding: 15px;
+}
+.AppNavLink a{
+    margin: 0 30px;
+    text-decoration: none;
+    color: grey;
+    font-weight: 500;
+    letter-spacing: 1.4px;
+}
+.AppNavLink a:hover{
+    color: black;
+}

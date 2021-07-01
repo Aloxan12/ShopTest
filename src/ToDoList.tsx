@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
-import './App.css';
-import {FilterType, TasksType} from "./App";
+import './ui/App.css';
+import {FilterType, TasksType} from "./ui/App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
