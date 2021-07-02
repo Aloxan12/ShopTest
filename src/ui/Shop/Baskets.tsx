@@ -1,21 +1,34 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../App.css';
 import style from './Basket.module.css';
-import {Button} from "@material-ui/core";
 import {ProductType} from "../../bll/state/product-reducer";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../bll/state/store";
 
 export type BasketType = {
     product: Array<ProductType>
-    addCount:(id: string, count: number)=>void
-    removeCount:(id: string, count: number)=>void
-    removeProd: (prodId: string)=>void
+    totalPrice: (newPrice: number)=>void
 }
 
-export function Basket() {
+export const Basket: React.FC<BasketType> = ({product,totalPrice}) => {
+    const price = useSelector<AppRootStateType, number>(state => state.basket.price)
+
+    let newPriceValue = product.map(p=>p.price).reduce((acc, el)=>acc+ el, 0)
+    totalPrice(newPriceValue)
     return (
         <div className={style.basketContainer}>
             <div>
-                Продукты
+                {
+                    product.map(p => {
+                        return <div>
+                            <div key={p.id} className={style.prod}>
+                                <img src={p.img}/>
+                                <h3>{p.title}</h3>
+                                <p>{p.price}<span>byn</span></p>
+                                <p>{p.description}</p>
+                            </div>
+                        </div>
+                    })}
             </div>
             <div>
                 Корзина
@@ -25,6 +38,7 @@ export function Basket() {
                     <input type={'text'} placeholder={'Address'}/>
                     <input type={'numbers'} placeholder={'Phone'}/>
                     <button>Order</button>
+                    <p>Total: {price.toString()}</p>
                 </form>
             </div>
         </div>

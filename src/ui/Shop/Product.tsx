@@ -2,13 +2,15 @@ import React from 'react';
 import '../App.css';
 import style from './Product.module.css'
 import {ProductType} from "../../bll/state/product-reducer";
+import {Button} from "@material-ui/core";
 
 
 export type ProductsType = {
     products: ProductType[]
+    addProductToBasket: (prodId: ProductType)=> void
 }
 
-export const Product: React.FC<ProductsType> = ({products}) => {
+export const Product: React.FC<ProductsType> = ({products, addProductToBasket}) => {
 
     return (
         <div className={style.container}>
@@ -19,7 +21,7 @@ export const Product: React.FC<ProductsType> = ({products}) => {
                         <h3>{p.title}</h3>
                         <p>{p.price}<span>byn</span></p>
                         <p>{p.description}</p>
-                        <button>Купить\Добавить</button>
+                        <Button onClick={()=>{addProductToBasket(p)}}>Купить\Добавить</Button>
                     </div>
                 </div>
             })}

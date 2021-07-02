@@ -29,11 +29,12 @@ const initialState = {
     ] as Array<ProductType>
 }
 export const actions = {
-    setProduct:()=>({type:"SET_PRODUCT"} as const)
+    setProduct:()=>({type:"SET_PRODUCT"} as const),
+    addProductToBasket:(id: string)=>({type:"ADD_PRODUCT_TO_BASKET", payload: id} as const),
 }
 
 
-export const productReducer = (state = initialState, action: ActionsTypes): InitialState => {
+const productReducer = (state = initialState, action: ActionsTypes): InitialState => {
     switch (action.type) {
         case "SET_PRODUCT":
             return {...state, product: state.product}
@@ -42,7 +43,7 @@ export const productReducer = (state = initialState, action: ActionsTypes): Init
     }
 }
 
-
+export default productReducer
 
 export type InitialState = typeof initialState
 type ActionsTypes = InferActionsTypes<typeof actions>
