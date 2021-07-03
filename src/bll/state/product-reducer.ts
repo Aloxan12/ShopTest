@@ -7,24 +7,25 @@ export type ProductType = {
     title: string
     price: number
     description: string
+    count: number
 }
 const initialState = {
     product: [
         {
             id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg", title: "Pasta", price: 3,
-            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:",
+            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:",count:1
         },
         {
             id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg", title: "Pasta", price: 8,
-            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:",
+            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:",count:1
         },
         {
             id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg", title: "Pasta", price: 9,
-            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:",
+            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:",count:1
         },
         {
             id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg", title: "Pasta", price: 2,
-            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:",
+            description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:",count:1
         },
     ] as Array<ProductType>
 }

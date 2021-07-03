@@ -8,6 +8,7 @@ const initialState = {
 export const actions = {
     addProductToBasket: (product: ProductType) => ({type: "ADD_PRODUCT_TO_BASKET", product} as const),
     setTotalPrice: (totalPrice: number) => ({type: "SET_TOTAL_PRICE", totalPrice} as const),
+    addProductAC: (id: string, price: number, count: number) => ({type: "ADD_PRODUCT",id,price, count} as const),
 }
 
 
@@ -17,6 +18,14 @@ const basketReducer = (state = initialState, action: ActionsTypes): InitialState
             return {...state, productInBasket: [...state.productInBasket, action.product]}
         case "SET_TOTAL_PRICE":
             return {...state, price: action.totalPrice}
+        case "ADD_PRODUCT": {
+            const addProd = state.productInBasket.find(p=> p.id === action.id)
+            if(addProd){
+                addProd.count = action.count
+                addProd.price = action.price
+            }
+            return state
+        }
         default:
             return state
     }

@@ -2,30 +2,37 @@ import React from 'react';
 import '../App.css';
 import style from './Basket.module.css';
 import {ProductType} from "../../bll/state/product-reducer";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../bll/state/store";
+import {Button} from "@material-ui/core";
 
 export type BasketType = {
     product: Array<ProductType>
-    totalPrice: (newPrice: number)=>void
+    totalPrice: (newPrice: number) => void
 }
 
-export const Basket: React.FC<BasketType> = ({product,totalPrice}) => {
+export const Basket: React.FC<BasketType> = ({product, totalPrice}) => {
     const price = useSelector<AppRootStateType, number>(state => state.basket.price)
+    const dispatch = useDispatch()
 
-    let newPriceValue = product.map(p=>p.price).reduce((acc, el)=>acc+ el, 0)
+    let newPriceValue = product.map(p => p.price).reduce((acc, el) => acc + el, 0)
     totalPrice(newPriceValue)
     return (
         <div className={style.basketContainer}>
             <div>
                 {
                     product.map(p => {
-                        return <div>
+                        return <div className={style.prodCount}>
                             <div key={p.id} className={style.prod}>
                                 <img src={p.img}/>
                                 <h3>{p.title}</h3>
-                                <p>{p.price}<span>byn</span></p>
+                                <p>{p.price}<span>byn </span> за {p.count} шт\уп</p>
                                 <p>{p.description}</p>
+                            </div>
+                            <div className={style.countCont}>
+                                <Button>-</Button>
+                                <span>1</span>
+                                <Button >+</Button>
                             </div>
                         </div>
                     })}
