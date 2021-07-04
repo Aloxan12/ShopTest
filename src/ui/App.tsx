@@ -16,13 +16,18 @@ function App() {
     const productInBasket = useSelector<AppRootStateType, Array<ProductType>>(state => state.basket.productInBasket)
 
     const addProductToBasket = (product: ProductType) => {
+        // const isInBasket = [...productInBasket].find(p=> p.id === product.id)
+        // if(isInBasket){
+        //     dispatch(actions.addProductAC(product.id))
+        // }else
         dispatch(actions.addProductToBasket(product))
+    }
+    const addCountProductInBasket =(id: string)=>{
+        dispatch(actions.addProductAC(id))
     }
     const totalPrice = (newPrice: number) => {
         dispatch(actions.setTotalPrice(newPrice))
     }
-
-    const productToBasket = Array.from(new Set(productInBasket))
 
     return (
         <div className="App">
@@ -39,13 +44,14 @@ function App() {
             </AppBar>
             <div className="AppNavLink">
                 <NavLink to={'/product'}>Product</NavLink>
-                <NavLink to={'/basket'}>Basket({productToBasket.length.toString()})</NavLink>
+                <NavLink to={'/basket'}>Basket({productInBasket.length.toString()})</NavLink>
             </div>
             <Route path='/product' render={() => <Product products={products}
                                                           addProductToBasket={addProductToBasket}
             />}/>
-            <Route path='/basket' render={() => <Basket product={productToBasket}
+            <Route path='/basket' render={() => <Basket product={productInBasket}
                                                         totalPrice={totalPrice}
+                                                        addCountProductInBasket={addCountProductInBasket}
             />}/>
         </div>
     );

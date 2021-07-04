@@ -31,14 +31,21 @@ const initialState = {
 }
 export const actions = {
     setProduct:()=>({type:"SET_PRODUCT"} as const),
-    addProductToBasket:(id: string)=>({type:"ADD_PRODUCT_TO_BASKET", payload: id} as const),
+    filterProductToBasket:(id: string, )=>({type:"FILTER_PRODUCT_TO_BASKET", id} as const),
 }
 
 
 const productReducer = (state = initialState, action: ActionsTypes): InitialState => {
     switch (action.type) {
         case "SET_PRODUCT":
-            return {...state, product: state.product}
+            return {...state, product: {...state.product}}
+        case "FILTER_PRODUCT_TO_BASKET":{
+            const inBasket = state.product.find(p=> p.id === action.id)
+            if(inBasket){
+                inBasket.count++;
+            }
+            return {...state}
+        }
         default:
             return state
     }

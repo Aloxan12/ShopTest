@@ -2,18 +2,18 @@ import React from 'react';
 import '../App.css';
 import style from './Basket.module.css';
 import {ProductType} from "../../bll/state/product-reducer";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../bll/state/store";
 import {Button} from "@material-ui/core";
 
 export type BasketType = {
     product: Array<ProductType>
     totalPrice: (newPrice: number) => void
+    addCountProductInBasket: (id: string) => void
 }
 
-export const Basket: React.FC<BasketType> = ({product, totalPrice}) => {
+export const Basket: React.FC<BasketType> = ({product, totalPrice, addCountProductInBasket}) => {
     const price = useSelector<AppRootStateType, number>(state => state.basket.price)
-    const dispatch = useDispatch()
 
     let newPriceValue = product.map(p => p.price).reduce((acc, el) => acc + el, 0)
     totalPrice(newPriceValue)
@@ -22,6 +22,11 @@ export const Basket: React.FC<BasketType> = ({product, totalPrice}) => {
             <div>
                 {
                     product.map(p => {
+
+                        const addProduct =()=>{
+                            addCountProductInBasket(p.id)
+                        }
+
                         return <div className={style.prodCount}>
                             <div key={p.id} className={style.prod}>
                                 <img src={p.img}/>
@@ -32,7 +37,7 @@ export const Basket: React.FC<BasketType> = ({product, totalPrice}) => {
                             <div className={style.countCont}>
                                 <Button>-</Button>
                                 <span>1</span>
-                                <Button >+</Button>
+                                <Button onClick={addProduct}>+</Button>
                             </div>
                         </div>
                     })}

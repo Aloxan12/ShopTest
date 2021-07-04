@@ -19,7 +19,7 @@ export const Product: React.FC<ProductsType> = ({products, addProductToBasket}) 
                     <div key={p.id} className={style.prod}>
                         <img src={p.img}/>
                         <h3>{p.title}</h3>
-                        <p>{p.price}<span>byn</span></p>
+                        <p>{p.price}<span>byn</span>{p.count}</p>
                         <p>{p.description}</p>
                         <Button onClick={()=>{addProductToBasket(p)}}>Купить\Добавить</Button>
                     </div>
