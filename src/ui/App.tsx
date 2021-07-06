@@ -6,29 +6,28 @@ import {Menu} from "@material-ui/icons";
 import {Product} from "./Shop/Product";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../bll/state/store";
-import {ProductType} from "../bll/state/product-reducer";
+import {actions, ActType, ProductType} from "../bll/state/product-reducer";
 import {Basket} from "./Shop/Baskets";
-import {actions} from "../bll/state/basket-reducer";
 
 function App() {
     const dispatch = useDispatch()
     const products = useSelector<AppRootStateType, Array<ProductType>>(state => state.product.product)
-    const productInBasket = useSelector<AppRootStateType, Array<ProductType>>(state => state.basket.productInBasket)
+    const productInBasket = useSelector<AppRootStateType, Array<ProductType>>(state => state.product.productInBasket)
 
-    const addProductToBasket = (product: ProductType) => {
-        // const isInBasket = [...productInBasket].find(p=> p.id === product.id)
-        // if(isInBasket){
-        //     dispatch(actions.addProductAC(product.id))
-        // }else
-        dispatch(actions.addProductToBasket(product))
+    const addProductToBasket = (id: string) => {
+         const isInBasket = productInBasket.find(p=> p.id === id)
+         if(isInBasket){
+             dispatch(actions.addAndDeleteProductAC(isInBasket.id, 'plus'))
+         }else
+        dispatch(actions.addProductToBasket(id))
     }
-    const addCountProductInBasket =(id: string)=>{
-        dispatch(actions.addProductAC(id))
+    const addAndDeleteProduct =(id: string, act: ActType, count: number)=>{
+        dispatch(actions.addAndDeleteProductAC(id, act))
+        dispatch(actions.filterCountProductAC(count))
     }
     const totalPrice = (newPrice: number) => {
         dispatch(actions.setTotalPrice(newPrice))
     }
-
     return (
         <div className="App">
             <AppBar position="static">
@@ -51,7 +50,7 @@ function App() {
             />}/>
             <Route path='/basket' render={() => <Basket product={productInBasket}
                                                         totalPrice={totalPrice}
-                                                        addCountProductInBasket={addCountProductInBasket}
+                                                        addAndDeleteProduct={addAndDeleteProduct}
             />}/>
         </div>
     );

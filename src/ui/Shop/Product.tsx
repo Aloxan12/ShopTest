@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../App.css';
 import style from './Product.module.css'
 import {ProductType} from "../../bll/state/product-reducer";
@@ -7,11 +7,10 @@ import {Button} from "@material-ui/core";
 
 export type ProductsType = {
     products: ProductType[]
-    addProductToBasket: (prodId: ProductType)=> void
+    addProductToBasket: (id: string)=> void
 }
 
 export const Product: React.FC<ProductsType> = ({products, addProductToBasket}) => {
-
     return (
         <div className={style.container}>
             {products.map(p => {
@@ -21,7 +20,7 @@ export const Product: React.FC<ProductsType> = ({products, addProductToBasket}) 
                         <h3>{p.title}</h3>
                         <p>{p.price}<span>byn</span>{p.count}</p>
                         <p>{p.description}</p>
-                        <Button onClick={()=>{addProductToBasket(p)}}>Купить\Добавить</Button>
+                        <Button onClick={()=>{addProductToBasket(p.id)}}>Купить\Добавить</Button>
                     </div>
                 </div>
             })}

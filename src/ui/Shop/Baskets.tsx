@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import style from './Basket.module.css';
-import {ProductType} from "../../bll/state/product-reducer";
+import {ActType, ProductType} from "../../bll/state/product-reducer";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../bll/state/store";
 import {Button} from "@material-ui/core";
@@ -9,11 +9,11 @@ import {Button} from "@material-ui/core";
 export type BasketType = {
     product: Array<ProductType>
     totalPrice: (newPrice: number) => void
-    addCountProductInBasket: (id: string) => void
+    addAndDeleteProduct:(id: string, act: ActType, count: number)=> void
 }
 
-export const Basket: React.FC<BasketType> = ({product, totalPrice, addCountProductInBasket}) => {
-    const price = useSelector<AppRootStateType, number>(state => state.basket.price)
+export const Basket: React.FC<BasketType> = ({product, totalPrice, addAndDeleteProduct}) => {
+    const price = useSelector<AppRootStateType, number>(state => state.product.price)
 
     let newPriceValue = product.map(p => p.price).reduce((acc, el) => acc + el, 0)
     totalPrice(newPriceValue)
@@ -22,11 +22,9 @@ export const Basket: React.FC<BasketType> = ({product, totalPrice, addCountProdu
             <div>
                 {
                     product.map(p => {
-
-                        const addProduct =()=>{
-                            addCountProductInBasket(p.id)
+                        const addDeleteProd =(act: ActType)=>{
+                            addAndDeleteProduct(p.id, act, p.count)
                         }
-
                         return <div className={style.prodCount}>
                             <div key={p.id} className={style.prod}>
                                 <img src={p.img}/>
@@ -35,9 +33,9 @@ export const Basket: React.FC<BasketType> = ({product, totalPrice, addCountProdu
                                 <p>{p.description}</p>
                             </div>
                             <div className={style.countCont}>
-                                <Button>-</Button>
-                                <span>1</span>
-                                <Button onClick={addProduct}>+</Button>
+                                <Button onClick={()=>{addDeleteProd('minus')}}>-</Button>
+                                <span>{p.count}</span>
+                                <Button onClick={()=>addDeleteProd('plus')}>+</Button>
                             </div>
                         </div>
                     })}
