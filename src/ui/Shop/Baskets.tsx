@@ -9,12 +9,14 @@ import {Button} from "@material-ui/core";
 export type BasketType = {
     product: Array<ProductType>
     totalPrice: (newPrice: number) => void
-    addAndDeleteProduct:(id: string, act: ActType, count: number)=> void
+    addAndDeleteProduct:(id: string, act: ActType)=> void
+    checkoutBasket:()=>void
 }
 
-export const Basket: React.FC<BasketType> = ({product, totalPrice, addAndDeleteProduct}) => {
+export const Basket: React.FC<BasketType> = ({product, totalPrice, addAndDeleteProduct, checkoutBasket}) => {
     const price = useSelector<AppRootStateType, number>(state => state.product.price)
 
+    const checkout=()=> console.log(JSON.stringify(product))
     let newPriceValue = product.map(p => p.price).reduce((acc, el) => acc + el, 0)
     totalPrice(newPriceValue)
     return (
@@ -23,7 +25,7 @@ export const Basket: React.FC<BasketType> = ({product, totalPrice, addAndDeleteP
                 {
                     product.map(p => {
                         const addDeleteProd =(act: ActType)=>{
-                            addAndDeleteProduct(p.id, act, p.count)
+                            addAndDeleteProduct(p.id, act)
                         }
                         return <div className={style.prodCount}>
                             <div key={p.id} className={style.prod}>
@@ -48,6 +50,7 @@ export const Basket: React.FC<BasketType> = ({product, totalPrice, addAndDeleteP
                     <input type={'text'} placeholder={'Address'}/>
                     <input type={'numbers'} placeholder={'Phone'}/>
                     <button>Order</button>
+                    <Button onClick={checkout}>Checkout</Button>
                     <p>Total: {price.toString()}</p>
                 </form>
             </div>

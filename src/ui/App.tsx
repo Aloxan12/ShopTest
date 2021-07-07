@@ -21,12 +21,14 @@ function App() {
          }else
         dispatch(actions.addProductToBasket(id))
     }
-    const addAndDeleteProduct =(id: string, act: ActType, count: number)=>{
+    const addAndDeleteProduct =(id: string, act: ActType)=>{
         dispatch(actions.addAndDeleteProductAC(id, act))
-        dispatch(actions.filterCountProductAC(count))
     }
     const totalPrice = (newPrice: number) => {
         dispatch(actions.setTotalPrice(newPrice))
+    }
+    const checkoutBasket =()=>{
+        actions.checkoutBasket(productInBasket)
     }
     return (
         <div className="App">
@@ -51,6 +53,7 @@ function App() {
             <Route path='/basket' render={() => <Basket product={productInBasket}
                                                         totalPrice={totalPrice}
                                                         addAndDeleteProduct={addAndDeleteProduct}
+                                                        checkoutBasket={checkoutBasket}
             />}/>
         </div>
     );
