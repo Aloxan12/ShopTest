@@ -6,8 +6,21 @@ import productReducer from "./product-reducer";
 const rootReducer = combineReducers({
     product: productReducer,
 })
+
+let preloadedState;
+const persistedTodosString = localStorage.getItem('state')
+if(persistedTodosString){
+    preloadedState = JSON.parse(persistedTodosString)
+}
+
 // непосредственно создаём store
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, preloadedState);
+
+store.subscribe(()=>{
+    localStorage.setItem('state', JSON.stringify(store.getState()))
+    localStorage.setItem('productInBasket', JSON.stringify(store.getState().product.productInBasket))
+})
+
 // определить автоматически тип всего объекта состояния
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
