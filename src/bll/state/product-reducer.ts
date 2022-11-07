@@ -1,6 +1,5 @@
 import {v1} from "uuid";
 import {InferActionsTypes} from "./store";
-import {log} from "util";
 
 export type ProductType = {
     id: string
