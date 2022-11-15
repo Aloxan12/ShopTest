@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import {NavLink, Route} from "react-router-dom";
-import {AppBar, Button, IconButton, Toolbar, Typography} from "@material-ui/core";
-import {Menu} from "@material-ui/icons";
+import {NavLink, Redirect, Route} from "react-router-dom";
 import {Product} from "./Shop/Product";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../bll/state/store";
@@ -32,21 +30,11 @@ function App() {
     }
     return (
         <div className="App">
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                        <Menu/>
-                    </IconButton>
-                    <Typography variant="h6">
-                        News
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
             <div className="AppNavLink">
                 <NavLink to={'/product'}>Product</NavLink>
                 <NavLink to={'/basket'}>Basket({productInBasket.length.toString()})</NavLink>
             </div>
+            <Route path='/' render={() => <Redirect to={'/product'} />}/>
             <Route path='/product' render={() => <Product products={products}
                                                           addProductToBasket={addProductToBasket}
             />}/>

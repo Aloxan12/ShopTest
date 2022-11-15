@@ -17,7 +17,7 @@ const initialState = {
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
         {
-            id: v1(), img: "https://sushichefarts.by/upload/iblock/ba7/ba79b531e47dfa1bec62fce7d1817916.jpg", title: "Sushi", price: 8,
+            id: v1(), img: "https://img.championat.com/news/big/w/q/pochemu-sushi-vredny-dlja-figury_1590677088981164064.jpg", title: "Sushi", price: 8,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
         {
