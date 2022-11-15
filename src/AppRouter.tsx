@@ -23,10 +23,10 @@ const route = [
 
 export const AppRouter = () => {
     return (
-        <div>
+        <React.Fragment>
             {route.map((item, index) => {
-                return <Route path={item.path} render={() => item.component}/>
+                return <Route path={item.path} render={() => item.component} key={`route - ${index}`}/>
             })}
-        </div>
+        </React.Fragment>
     );
 }

@@ -13,7 +13,7 @@ export const Basket = () => {
     const price = useSelector<AppRootStateType, number>(state => state.product.price)
     const productInBasket = useSelector<AppRootStateType, Array<ProductType>>(state => state.product.productInBasket)
 
-    const addAndDeleteProduct =(id: string, act: ActType)=>{
+    const addAndDeleteProduct =(id: number, act: ActType)=>{
         dispatch(actions.addAndDeleteProductAC(id, act))
     }
     const totalPrice = (newPrice: number) => {
@@ -34,9 +34,9 @@ export const Basket = () => {
                         const addDeleteProd =(act: ActType)=>{
                             addAndDeleteProduct(p.id, act)
                         }
-                        return <div className={style.prodCount}>
-                            <div key={p.id} className={style.prod}>
-                                <img src={p.img}/>
+                        return <div key={p.id} className={style.prodCount}>
+                            <div className={style.prod}>
+                                <img src={p.img} alt={p.title}/>
                                 <h3>{p.title}</h3>
                                 <p>{p.price}<span>byn </span> за {p.count} шт\уп</p>
                                 <p>{p.description}</p>

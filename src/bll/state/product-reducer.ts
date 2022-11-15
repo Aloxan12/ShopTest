@@ -1,8 +1,8 @@
-import {v1} from "uuid";
+
 import {InferActionsTypes} from "./store";
 
 export type ProductType = {
-    id: string
+    id: number
     img: string
     title: string
     price: number
@@ -13,19 +13,19 @@ export type ActType = 'plus' | 'minus'
 const initialState = {
     product: [
         {
-            id: v1(), img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg", title: "Pasta", price: 3,
+            id: 1, img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg", title: "Pasta", price: 3,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
         {
-            id: v1(), img: "https://img.championat.com/news/big/w/q/pochemu-sushi-vredny-dlja-figury_1590677088981164064.jpg", title: "Sushi", price: 8,
+            id: 2, img: "https://img.championat.com/news/big/w/q/pochemu-sushi-vredny-dlja-figury_1590677088981164064.jpg", title: "Sushi", price: 8,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
         {
-            id: v1(), img: "https://article.innovadatabase.com/articleimgs/article_images/637393054641064736meat%20types%20[800x800].jpg", title: "Meat", price: 9,
+            id: 3, img: "https://article.innovadatabase.com/articleimgs/article_images/637393054641064736meat%20types%20[800x800].jpg", title: "Meat", price: 9,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
         {
-            id: v1(), img: "https://amandascookin.com/wp-content/uploads/2009/01/italian-bread-680-500x500.jpg", title: "Bread", price: 2,
+            id: 4, img: "https://amandascookin.com/wp-content/uploads/2009/01/italian-bread-680-500x500.jpg", title: "Bread", price: 2,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
     ] as Array<ProductType>,
@@ -35,9 +35,9 @@ const initialState = {
 
 export const actions = {
     setProduct: () => ({type: "SET_PRODUCT"} as const),
-    addProductToBasket: (id: string) => ({type: "ADD_PRODUCT_TO_BASKET", id} as const),
+    addProductToBasket: (id: number) => ({type: "ADD_PRODUCT_TO_BASKET", id} as const),
     setTotalPrice: (totalPrice: number) => ({type: "SET_TOTAL_PRICE", totalPrice} as const),
-    addAndDeleteProductAC: (id: string, act: ActType) => ({type: "ADD_DELETE_PRODUCT", id, act} as const),
+    addAndDeleteProductAC: (id: number, act: ActType) => ({type: "ADD_DELETE_PRODUCT", id, act} as const),
     checkoutBasket: (baskets: ProductType[]) => ({type: "CHECKOUT_BASKETS", baskets} as const),
 }
 
@@ -57,7 +57,7 @@ const productReducer = (state = initialState, action: ActionsTypes): InitialStat
             const addProd = state.productInBasket.find(p => p.id === action.id)
             const startPrice = state.product.find(p => p.id === action.id)
             if (addProd && startPrice) {
-                action.act==='plus'? addProd.count++ : addProd.count--;
+                action.act === 'plus'? addProd.count++ : addProd.count--;
                 addProd.price = startPrice.price * addProd.count
             }
             const filterBasket = state.productInBasket.filter(p=> p.count > 0)
