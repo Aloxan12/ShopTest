@@ -1,16 +1,30 @@
 import React from 'react';
 import '../App.css';
 import style from './Product.module.css'
-import {ProductType} from "../../bll/state/product-reducer";
+import {actions, ProductType} from "../../bll/state/product-reducer";
 import {Button} from "@material-ui/core";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../bll/state/store";
 
 
-export type ProductsType = {
-    products: ProductType[]
-    addProductToBasket: (id: string)=> void
-}
+// export type ProductsType = {
+//     products: ProductType[]
+//     addProductToBasket: (id: string)=> void
+// }
 
-export const Product: React.FC<ProductsType> = ({products, addProductToBasket}) => {
+export const Product = () => {
+    const dispatch = useDispatch()
+    const products = useSelector<AppRootStateType, Array<ProductType>>(state => state.product.product)
+    const productInBasket = useSelector<AppRootStateType, Array<ProductType>>(state => state.product.productInBasket)
+
+    const addProductToBasket = (id: string) => {
+        const isInBasket = productInBasket.find(p=> p.id === id)
+        if(isInBasket){
+            dispatch(actions.addAndDeleteProductAC(isInBasket.id, 'plus'))
+        }else
+            dispatch(actions.addProductToBasket(id))
+    }
+
     return (
         <div className={style.container}>
             {products.map(p => {
