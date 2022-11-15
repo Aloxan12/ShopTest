@@ -13,7 +13,6 @@ interface IAppButton{
     color?:BtnColorType
 }
 
-export const AppButton = ({title, onClick, disabled, color = BtnColorType.white}:IAppButton) => {
+export const AppButton = React.memo(({title, onClick, disabled, color = BtnColorType.white}:IAppButton) => {
     return <button className={`btn ${color}`} onClick={onClick} disabled={disabled}>{title}</button>
-
-}
+})

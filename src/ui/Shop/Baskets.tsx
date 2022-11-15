@@ -7,7 +7,7 @@ import {AppRootStateType} from "../../bll/state/store";
 
 import {Button} from "@material-ui/core";
 
-export const Basket = () => {
+export const Basket = React.memo(() => {
     const dispatch = useDispatch()
     const product = useSelector<AppRootStateType, Array<ProductType>>(state => state.product.product)
     const price = useSelector<AppRootStateType, number>(state => state.product.price)
@@ -24,29 +24,31 @@ export const Basket = () => {
     }
 
     const checkout=()=> console.log(JSON.stringify(product))
-    let newPriceValue = product.map(p => p.price).reduce((acc, el) => acc + el, 0)
+    let newPriceValue = productInBasket.map(p => p.price).reduce((acc, el) => acc + el, 0)
     totalPrice(newPriceValue)
     return (
         <div className={style.basketContainer}>
             <div>
                 {
-                    product.map(p => {
+                    productInBasket.map(p => {
                         const addDeleteProd =(act: ActType)=>{
                             addAndDeleteProduct(p.id, act)
                         }
-                        return <div key={p.id} className={style.prodCount}>
-                            <div className={style.prod}>
-                                <img src={p.img} alt={p.title}/>
-                                <h3>{p.title}</h3>
-                                <p>{p.price}<span>byn </span> за {p.count} шт\уп</p>
-                                <p>{p.description}</p>
+                        return (
+                            <div key={p.id} className={style.prodCount}>
+                                <div className={style.prod}>
+                                    <img src={p.img} alt={p.title}/>
+                                    <h3>{p.title}</h3>
+                                    <p>{p.price}<span>byn </span> за {p.count} шт\уп</p>
+                                    <p>{p.description}</p>
+                                </div>
+                                <div className={style.countCont}>
+                                    <Button onClick={()=>{addDeleteProd('minus')}}>-</Button>
+                                    <span>{p.count}</span>
+                                    <Button onClick={()=>addDeleteProd('plus')}>+</Button>
+                                </div>
                             </div>
-                            <div className={style.countCont}>
-                                <Button onClick={()=>{addDeleteProd('minus')}}>-</Button>
-                                <span>{p.count}</span>
-                                <Button onClick={()=>addDeleteProd('plus')}>+</Button>
-                            </div>
-                        </div>
+                        )
                     })}
             </div>
             <div>
@@ -63,4 +65,4 @@ export const Basket = () => {
             </div>
         </div>
     );
-}
+})
