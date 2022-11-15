@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../App.scss';
 import style from './Basket.module.css';
 import {actions, ActType, ProductType} from "../../bll/state/product-reducer";
 import {useDispatch, useSelector} from "react-redux";

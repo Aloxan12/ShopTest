@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../App.scss';
 import style from './Product.module.css'
 import {actions, ProductType} from "../../bll/state/product-reducer";
 import {Button} from "@material-ui/core";

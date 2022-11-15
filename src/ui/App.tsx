@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {AppButton} from "./Components/AppButton/AppButton";
 import {AppRouter} from "../AppRouter";
 import {AppHeader} from "./AppHeader";
