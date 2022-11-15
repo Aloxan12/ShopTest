@@ -7,30 +7,26 @@ const route = [
     {
         title: 'Main',
         path: '/',
-        component: <Redirect to={'/profile'} />
+        component: <Redirect to={'/profile'}/>
     },
     {
-        title: 'Main',
-        path: '/',
-        component: <Redirect to={'/profile'} />
+        title: 'Product',
+        path: '/product',
+        component: <Product/>
     },
     {
-        title: 'Main',
-        path: '/',
-        component: <Redirect to={'/profile'} />
+        title: 'Basket',
+        path: '/basket',
+        component: <Basket/>
     },
 ]
 
 export const AppRouter = () => {
     return (
         <div>
-            <Route path='/' render={() => <Redirect to={'/product'} />}/>
-            <Route path='/product' render={() => <Product />}/>
-            <Route path='/basket' render={() => <Basket product={productInBasket}
-                                                        totalPrice={totalPrice}
-                                                        addAndDeleteProduct={addAndDeleteProduct}
-                                                        checkoutBasket={checkoutBasket}
-            />}/>
+            {route.map((item, index) => {
+                return <Route path={item.path} render={() => item.component}/>
+            })}
         </div>
     );
 }
