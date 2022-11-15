@@ -1,3 +1,8 @@
+import pasta from '../../utils/imgs/pasta.png'
+import sushi from '../../utils/imgs/sushi.png'
+import bread from '../../utils/imgs/bread.png'
+import meat from '../../utils/imgs/meat.png'
+
 
 import {InferActionsTypes} from "./store";
 
@@ -13,19 +18,19 @@ export type ActType = 'plus' | 'minus'
 const initialState = {
     product: [
         {
-            id: 1, img: "https://ptk-sp.ru/d/upakovka-dlya-spagetti-makfa-2.jpg", title: "Pasta", price: 3,
+            id: 1, img: pasta, title: "Pasta", price: 3,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
         {
-            id: 2, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8GUOOmfDWgT0m9F81aggyqjFwvBJKj7hiqgNX9DE_6N3wCgF-1A4i_ayyhbp0v9fEgA&usqp=CAU", title: "Sushi", price: 8,
+            id: 2, img: sushi, title: "Sushi", price: 8,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
         {
-            id: 3, img: "https://article.innovadatabase.com/articleimgs/article_images/637393054641064736meat%20types%20[800x800].jpg", title: "Meat", price: 9,
+            id: 3, img: meat, title: "Meat", price: 9,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
         {
-            id: 4, img: "https://amandascookin.com/wp-content/uploads/2009/01/italian-bread-680-500x500.jpg", title: "Bread", price: 2,
+            id: 4, img: bread, title: "Bread", price: 2,
             description: "Пакеты для ручной и автоматической фасовки сыпучих продуктов из комбинаций плёнок:", count: 1
         },
     ] as Array<ProductType>,
