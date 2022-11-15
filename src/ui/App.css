@@ -15,3 +15,7 @@
 .AppNavLink a:hover{
     color: black;
 }
+
+.AppNavLink .active{
+    color: black;
+}
