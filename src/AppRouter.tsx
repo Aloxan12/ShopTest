@@ -7,7 +7,7 @@ const route = [
     {
         title: 'Main',
         path: '/',
-        component: <Redirect to={'/profile'}/>
+        component: <Redirect to={'/product'}/>
     },
     {
         title: 'Product',

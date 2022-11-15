@@ -10,12 +10,11 @@ import {AppRouter} from "../AppRouter";
 function App() {
     const productInBasket = useSelector<AppRootStateType, Array<ProductType>>(state => state.product.productInBasket)
 
-
     return (
         <div className="App">
             <div className="AppNavLink">
-                <NavLink to={'/product'}>Product</NavLink>
-                <NavLink to={'/basket'}>Basket({productInBasket.length.toString()})</NavLink>
+                <NavLink to={'/product'}>Продукты</NavLink>
+                <NavLink to={'/basket'}>Корзина ({productInBasket.length.toString()})</NavLink>
             </div>
             <AppButton onClick={()=>{}} title={'Кнопка'} />
             <AppRouter />
