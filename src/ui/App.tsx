@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../bll/state/store";
 import {actions, ActType, ProductType} from "../bll/state/product-reducer";
 import {Basket} from "./Shop/Baskets";
+import {AppButton} from "./Components/AppButton/AppButton";
 
 function App() {
     const dispatch = useDispatch()
@@ -34,6 +35,7 @@ function App() {
                 <NavLink to={'/product'}>Product</NavLink>
                 <NavLink to={'/basket'}>Basket({productInBasket.length.toString()})</NavLink>
             </div>
+            <AppButton onClick={()=>{}} title={'Кнопка'} />
             <Route path='/' render={() => <Redirect to={'/product'} />}/>
             <Route path='/product' render={() => <Product products={products}
                                                           addProductToBasket={addProductToBasket}
