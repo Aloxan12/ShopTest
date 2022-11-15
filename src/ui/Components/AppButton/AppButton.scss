@@ -1,0 +1,16 @@
+.btn{
+    padding: 15px 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color ease-out .3s;
+    font-weight: 700;
+
+    &:hover{
+        background-color: rgba(204, 196, 196, 0.23);
+    }
+    &:active{
+        animation: pulse .7s ease-out;
+        background-color: rgba(51, 49, 49, 0.51);
+    }
+}

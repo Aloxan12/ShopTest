@@ -1,4 +1,5 @@
 import React from 'react';
+import './AppButton.scss'
 
 interface IAppButton{
     title: string
@@ -7,6 +8,6 @@ interface IAppButton{
 }
 
 export const AppButton = ({title, onClick, disabled}:IAppButton) => {
-    return <button onClick={onClick} disabled={disabled}>{title}</button>
+    return <button className={'btn'} onClick={onClick} disabled={disabled}>{title}</button>
 
 }
