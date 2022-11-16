@@ -7,8 +7,6 @@ function App() {
     return (
         <div className="App">
             <AppHeader />
-            {/*<AppButton onClick={()=>{}} title={'Кнопка'} />*/}
-            {/*<AppButton onClick={()=>{}} title={'Кнопка'}  color={BtnColorType.blue}/>*/}
             <AppRouter />
         </div>
     );
