@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../bll/state/store";
 
 import {AppButton} from "../Components/AppButton/AppButton";
+import {AppInput} from "../Components/AppInput/AppInput";
 
 export const Basket = React.memo(() => {
     const dispatch = useDispatch()
@@ -51,14 +52,13 @@ export const Basket = React.memo(() => {
                         )
                     })}
             </div>
-            <div>
+            <div className={'basket-form'}>
                 Корзина
                 <form className={'form'}>
-                    <input type={'text'} placeholder={'Name'}/>
-                    <input type={'text'} placeholder={'Surname'}/>
-                    <input type={'text'} placeholder={'Address'}/>
-                    <input type={'numbers'} placeholder={'Phone'}/>
-                    <button>Order</button>
+                    <AppInput value={''} onChange={()=>{}} placeholder={'Name'} type={'text'} border/>
+                    <AppInput value={''} onChange={()=>{}} placeholder={'Surname'} type={'text'} border/>
+                    <AppInput value={''} onChange={()=>{}} placeholder={'Address'} type={'text'} border/>
+                    <AppInput value={''} onChange={()=>{}} placeholder={'Phone'} type={'numbers'} border/>
                     <AppButton onClick={checkout} title={'Отправить'}/>
                     <p>Total: {price.toString()}</p>
                 </form>
