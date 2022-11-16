@@ -5,7 +5,6 @@ import {actions, ActType, ProductType} from "../../bll/state/product-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../bll/state/store";
 
-import {Button} from "@material-ui/core";
 import {AppButton} from "../Components/AppButton/AppButton";
 
 export const Basket = React.memo(() => {
@@ -60,7 +59,7 @@ export const Basket = React.memo(() => {
                     <input type={'text'} placeholder={'Address'}/>
                     <input type={'numbers'} placeholder={'Phone'}/>
                     <button>Order</button>
-                    <Button onClick={checkout}>Checkout</Button>
+                    <AppButton onClick={checkout} title={'Отправить'}/>
                     <p>Total: {price.toString()}</p>
                 </form>
             </div>
