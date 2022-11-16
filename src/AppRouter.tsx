@@ -25,7 +25,7 @@ export const AppRouter = () => {
     return (
         <React.Fragment>
             {route.map((item, index) => {
-                return <Route path={item.path} render={() => item.component} key={`route - ${index}`}/>
+                return <Route path={item.path} exact render={() => item.component} key={`route - ${index}`}/>
             })}
         </React.Fragment>
     );
