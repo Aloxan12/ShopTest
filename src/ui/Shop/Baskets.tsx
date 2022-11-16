@@ -1,11 +1,12 @@
 import React from 'react';
 import '../App.scss';
-import style from './Basket.module.css';
+import './Basket.scss';
 import {actions, ActType, ProductType} from "../../bll/state/product-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../bll/state/store";
 
 import {Button} from "@material-ui/core";
+import {AppButton} from "../Components/AppButton/AppButton";
 
 export const Basket = React.memo(() => {
     const dispatch = useDispatch()
@@ -27,7 +28,7 @@ export const Basket = React.memo(() => {
     let newPriceValue = productInBasket.map(p => p.price).reduce((acc, el) => acc + el, 0)
     totalPrice(newPriceValue)
     return (
-        <div className={style.basketContainer}>
+        <div className={'basketContainer'}>
             <div>
                 {
                     productInBasket.map(p => {
@@ -35,17 +36,17 @@ export const Basket = React.memo(() => {
                             addAndDeleteProduct(p.id, act)
                         }
                         return (
-                            <div key={p.id} className={style.prodCount}>
-                                <div className={style.prod}>
+                            <div key={p.id} className={'prodCount'}>
+                                <div className={'prod'}>
                                     <img src={p.img} alt={p.title}/>
                                     <h3>{p.title}</h3>
                                     <p>{p.price}<span>byn </span> за {p.count} шт\уп</p>
                                     <p>{p.description}</p>
                                 </div>
-                                <div className={style.countCont}>
-                                    <Button onClick={()=>{addDeleteProd('minus')}}>-</Button>
+                                <div className={'countCont'}>
+                                    <AppButton onClick={()=>{addDeleteProd('minus')}}  title={'-'}/>
                                     <span>{p.count}</span>
-                                    <Button onClick={()=>addDeleteProd('plus')}>+</Button>
+                                    <AppButton onClick={()=>addDeleteProd('plus')} title={'+'}/>
                                 </div>
                             </div>
                         )
@@ -53,7 +54,7 @@ export const Basket = React.memo(() => {
             </div>
             <div>
                 Корзина
-                <form className={style.form}>
+                <form className={'form'}>
                     <input type={'text'} placeholder={'Name'}/>
                     <input type={'text'} placeholder={'Surname'}/>
                     <input type={'text'} placeholder={'Address'}/>

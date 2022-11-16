@@ -32,5 +32,12 @@
     display: flex;
 }
 .countCont{
+    display: inline-flex;
+    align-items: center;
+    column-gap: 10px;
     margin: auto;
+
+    .btn{
+        min-width: 45px;
+    }
 }
