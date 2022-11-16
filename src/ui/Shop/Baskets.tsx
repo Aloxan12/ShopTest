@@ -25,6 +25,7 @@ export const Basket = React.memo(() => {
     }
 
     const checkout=()=> console.log(JSON.stringify(product))
+
     let newPriceValue = productInBasket.map(p => p.price).reduce((acc, el) => acc + el, 0)
     totalPrice(newPriceValue)
     return (
@@ -54,14 +55,14 @@ export const Basket = React.memo(() => {
             </div>
             <div className={'basket-form'}>
                 Корзина
-                <form className={'form'}>
+                <div className={'form'}>
                     <AppInput value={''} onChange={()=>{}} placeholder={'Name'} type={'text'} border/>
                     <AppInput value={''} onChange={()=>{}} placeholder={'Surname'} type={'text'} border/>
                     <AppInput value={''} onChange={()=>{}} placeholder={'Address'} type={'text'} border/>
                     <AppInput value={''} onChange={()=>{}} placeholder={'Phone'} type={'numbers'} border/>
                     <AppButton onClick={checkout} title={'Отправить'}/>
                     <p>Total: {price.toString()}</p>
-                </form>
+                </div>
             </div>
         </div>
     );

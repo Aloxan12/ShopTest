@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent} from 'react';
 import './AppButton.scss'
 
 export enum BtnColorType {
