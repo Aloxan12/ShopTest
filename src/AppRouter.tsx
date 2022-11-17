@@ -19,6 +19,11 @@ const route = [
         path: '/basket',
         component: <Basket/>
     },
+    {
+        title: 'ShopTest',
+        path: '/ShopTest/',
+        component: <Redirect to={'/product'}/>
+    },
 ]
 
 export const AppRouter = () => {
